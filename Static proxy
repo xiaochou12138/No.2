@@ -1,0 +1,42 @@
+//结婚的接口，接口中定义一个happyMarry的方法
+interface Marry{
+    void happyMarry();
+}
+
+//创建一个代理角色（婚庆公司），婚庆公司帮你布置婚礼现场以及婚礼后的收尾工作
+class WeddingCompany implements Marry{
+    private Marry target;
+
+    public WeddingCompany(Marry target) {
+        this.target = target;
+    }
+   @Override
+   public void happyMarry() {
+       ready();
+       this.target.happyMarry();
+       after();
+   }
+   private void ready(){
+       System.out.println("婚礼策划");
+   }
+   private void after(){
+       System.out.println("收尾工作");
+   }
+}
+
+
+//创建类You，你就是被代理角色，快结婚了，恭喜恭喜
+class You implements Marry{
+    @Override
+    public void happyMarry() {
+        System.out.println("下个月我要去和我的爱人结婚了。。。哈哈哈");
+    }
+}
+
+public class StaticProxy{
+public  static void main (string[] args){
+new weddingCompany(new you()).Happymarry();
+
+}
+
+}
